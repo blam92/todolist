@@ -5,22 +5,21 @@ import Filters from './Components/Filters.jsx';
 import store from '../redux/reducer.js';
 
 let render = () => {
-  // let addTodo = store.dispatch({id: 0, type: 'ADD_TODO', item: 'Study'});
-  // ReactDOM.render(<App onIncrement={increment} onDecrement={decrement} value={store.getState()}/>,
-  //  document.getElementById('app'));
+  ReactDOM.render(<App todos={store.getState()}/>,
+   document.getElementById('app'));
 };
 
-store.dispatch({id: 0, type: 'ADD_TODO', item: 'Study'});
-store.dispatch({id: 1, type: 'ADD_TODO', item: 'Watch New Girl'});
-store.dispatch({id: 1, type: 'TOGGLE_TODO'});
-// store.dispatch({id: 0, type: 'REMOVE_TODO'});
+store.subscribe(render)
 console.log(store.getState());
 
-let App = ({value, onIncrement, onDecrement}) => (
+let App = ({todos}) => (
   <div>
     Add to list:
     <Input/>
     <Filters/>
+    <ul>
+      {todos.map((todo) => <li key={todo.id}>{todo.item}</li>)}
+    </ul>
   </div>);
 
 render();

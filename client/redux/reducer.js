@@ -16,9 +16,9 @@ const todos = (state = [], action) => {
     case 'ADD_TODO':
       return [...state, todo(undefined, action)];
     case 'REMOVE_TODO':
-      return [...state.slice(0, action.id), ...state.slice(action.id + 1)];
+      return state.filter(itm => itm.id !== action.id);
     case 'TOGGLE_TODO':
-      return state.map((itm) => (itm.id === action.id ? todo(itm, action) : itm));
+      return state.map(itm => (itm.id === action.id ? todo(itm, action) : itm));
     default:
       return state;
   }

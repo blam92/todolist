@@ -18,7 +18,11 @@ let App = ({todos}) => (
     <Input/>
     <Filters/>
     <ul>
-      {todos.map((todo) => <li key={todo.id}>{todo.item}</li>)}
+      {todos.map((todo) => 
+        <li key={todo.id} onClick={() => store.dispatch({id: todo.id, type: 'TOGGLE_TODO'})}
+        style={{textDecoration: todo.finished ? 'line-through' : 'none'}}>
+          {todo.item}
+        </li>)}
     </ul>
   </div>);
 

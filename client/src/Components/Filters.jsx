@@ -1,16 +1,22 @@
 import React from 'react';
+import store from '../../redux/reducer.js';
 const styles = {
   filters: {
-    margin: "5px 5px",
-    cursor: "pointer"
+    margin: "5px 5px"
   }
 }
-let Filters = (props) => {
+
+let Filters = ({visibilityFilter, filter, textLink}) => {
+  if(visibilityFilter === filter) {
+    return (
+      <span>{textLink}</span>
+    );
+  }
   return (
   <div>
-    <a style={styles.filters}>All</a>
-    <a style={styles.filters}>Done</a>
-    <a style={styles.filters}>Pending</a>
+    <a href="#" style={styles.filters} onClick={() => {
+      store.dispatch({type: 'SET_VISIBILITY_FILTER', filter});
+    }}>{textLink}</a>
   </div>);
 }
 

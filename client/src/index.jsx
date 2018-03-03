@@ -5,11 +5,11 @@ import Filters from './Components/Filters.jsx';
 import store from '../redux/reducer.js';
 
 let render = () => {
-  ReactDOM.render(<App todos={store.getState()}/>,
+  ReactDOM.render(<App {...store.getState()}/>,
    document.getElementById('app'));
 };
 
-store.subscribe(render)
+store.subscribe(render);
 console.log(store.getState());
 
 let App = ({todos}) => (

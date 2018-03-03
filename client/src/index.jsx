@@ -5,11 +5,10 @@ import Filters from './Components/Filters.jsx';
 import store from '../redux/reducer.js';
 
 let render = () => {
-  ReactDOM.render(<App {...store.getState()}/>,
+  ReactDOM.render(<App {...store.getState()}/>, //todos={store.todos} visibilityFilter={store.visibilityFilter}
    document.getElementById('app'));
 };
 store.subscribe(render);
-console.log(store.getState());
 
 let App = ({todos, visibilityFilter}) => {
   let getVisibleTodos = (todos, filter) => {
@@ -22,7 +21,7 @@ let App = ({todos, visibilityFilter}) => {
         return todos;
     }
   }
-  
+
   let visibleTodos = getVisibleTodos(todos, visibilityFilter);
   return (
     <div>

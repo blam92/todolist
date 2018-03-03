@@ -34,6 +34,6 @@ const visibilityFilter = (state = 'SHOW_ALL', action) => {
 }
 
 let todoApp = combineReducers({todos, visibilityFilter});
-let store = createStore(todoApp);
+let store = createStore(todoApp, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 export default store;

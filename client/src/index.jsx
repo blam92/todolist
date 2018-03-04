@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import Input from './Components/Input.jsx';
-import Filters from './Components/Filters.jsx';
 import store from '../redux/reducer.js';
+import Footer from './Components/Footer.jsx';
 
 let render = () => {
-  ReactDOM.render(<App {...store.getState()}/>, //todos={store.todos} visibilityFilter={store.visibilityFilter}
+  ReactDOM.render(<App {...store.getState()}/>,
    document.getElementById('app'));
 };
 store.subscribe(render);
@@ -27,9 +27,6 @@ let App = ({todos, visibilityFilter}) => {
     <div>
       Add to list:
       <Input/>
-      <Filters visibilityFilter={visibilityFilter} textLink={'All'} filter={'SHOW_ALL'}/>
-      <Filters visibilityFilter={visibilityFilter} textLink={'Finished'} filter={'SHOW_FINISHED'}/>
-      <Filters visibilityFilter={visibilityFilter} textLink={'Pending'} filter={'SHOW_PENDING'}/>
       <ul>
         {visibleTodos.map((todo) => 
           <li key={todo.id} onClick={() => store.dispatch({id: todo.id, type: 'TOGGLE_TODO'})}
@@ -37,6 +34,7 @@ let App = ({todos, visibilityFilter}) => {
             {todo.item}
           </li>)}
       </ul>
+      <Footer visibilityFilter={visibilityFilter} />
     </div>);
 }
 

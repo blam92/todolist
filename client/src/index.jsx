@@ -4,11 +4,12 @@ import { Provider } from 'react-redux';
 import store from './reducers/index.js';
 import Footer from './components/Footer.jsx';
 import Input from './components/Input.jsx';
+import Todos from './components/Todos.jsx';
 
 let App = () => (
   <div>
     <Input/>
-    {/* <Todos/> */}
+    <Todos/>
     <Footer/>
   </div>
 );

@@ -1,41 +1,19 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import Input from './Components/Input.jsx';
-import store from '../redux/reducer.js';
-import Footer from './Components/Footer.jsx';
+import { Provider } from 'react-redux';
+import store from './reducers/index.js';
+import Footer from './components/Footer.jsx';
+import Input from './components/Input.jsx';
 
-let render = () => {
-  ReactDOM.render(<App {...store.getState()}/>,
-   document.getElementById('app'));
-};
-store.subscribe(render);
+let App = () => (
+  <div>
+    <Input/>
+    {/* <Todos/> */}
+    <Footer/>
+  </div>
+);
 
-let App = ({todos, visibilityFilter}) => {
-  let getVisibleTodos = (todos, filter) => {
-    switch (filter) {
-      case 'SHOW_FINISHED':
-        return todos.filter((item) => item.finished);
-      case 'SHOW_PENDING':
-        return todos.filter((item) => !item.finished);
-      default:
-        return todos;
-    }
-  }
-
-  let visibleTodos = getVisibleTodos(todos, visibilityFilter);
-  return (
-    <div>
-      Add To List:
-      <Input/>
-      <ul>
-        {visibleTodos.map((todo) => 
-          <li key={todo.id} onClick={() => store.dispatch({id: todo.id, type: 'TOGGLE_TODO'})}
-          style={{textDecoration: todo.finished ? 'line-through' : 'none'}}>
-            {todo.item}
-          </li>)}
-      </ul>
-      <Footer visibilityFilter={visibilityFilter} />
-    </div>);
-}
-
-render();
+ReactDOM.render(
+  <Provider store={store}>
+    <App/>
+  </Provider>, document.getElementById('app'));

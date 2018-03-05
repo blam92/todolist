@@ -15,6 +15,11 @@ const todos = (state = [], action) => {
       return [...state, todo(undefined, action)];
     case 'TOGGLE_TODO':
       return state.map((item) => item.id === action.id ? todo(item, action) : item);
+    case 'CHANGE_ORDER':
+      let newState = state.slice();
+      const [removed] = newState.splice(action.sourceIdx, 1);
+      newState.splice(action.destinationIdx, 0, removed);
+      return newState;
     default:
       return state;
   }

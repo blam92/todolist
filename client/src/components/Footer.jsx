@@ -5,7 +5,7 @@ import actions from '../actions/index.js';
 let filters = actions.filterOptions;
 
 let Footer = () => (
-  <div>
+  <div style={{margin: '20px 0'}}>
     <FilterLink text={'All'} filter={filters.SHOW_ALL}/>
     {' '}
     <FilterLink text={'Finished'} filter={filters.SHOW_FINISHED}/>

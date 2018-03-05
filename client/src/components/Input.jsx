@@ -5,12 +5,16 @@ import actions from '../actions/index.js';
 
 let Input = ({ dispatch }) => {
   let inputNode;
+  let addItem = () => {
+    dispatch(actions.addTodo(inputNode.value));
+    inputNode.value = '';
+  }
   return (
     <div>
       <input ref={node => {
         inputNode = node;
-      }}/>
-      <button onClick={() => dispatch(actions.addTodo(inputNode.value))}>Add</button>
+      }} onKeyPress={(e) => e.key === 'Enter' ?  addItem() : null}/>
+      <button onClick={addItem}>Add</button>
     </div>);
 }
 

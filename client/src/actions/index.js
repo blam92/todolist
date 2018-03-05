@@ -21,6 +21,15 @@ let setVisibilityFilter = (filter) => {
   }
 };
 
+let switchOrder = (sourceIdx, destinationIdx) => {
+  destinationIdx = destinationIdx === -1 ? 0 : destinationIdx;
+  return {
+    type: 'CHANGE_ORDER',
+    sourceIdx,
+    destinationIdx
+  }
+}
+
 let filterOptions = {
   SHOW_ALL: 'SHOW_ALL',
   SHOW_FINISHED: 'SHOW_FINISHED',
@@ -31,5 +40,6 @@ export default {
   addTodo,
   toggleTodo,
   setVisibilityFilter,
-  filterOptions
+  filterOptions,
+  switchOrder
 };

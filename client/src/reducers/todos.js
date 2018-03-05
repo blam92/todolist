@@ -9,6 +9,16 @@ const todo = (state = {}, action) => {
   }
 }
 
+const findIndexOfItemById = (array, id) => {
+  for(let i = 0; i < array.length; i++) {
+    if(array[i].id === id) {
+      return i;
+    }
+  }
+
+  return -1;
+}
+
 const todos = (state = [], action) => {
   switch (action.type) {
     case 'ADD_TODO':

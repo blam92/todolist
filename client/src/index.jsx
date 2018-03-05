@@ -25,7 +25,7 @@ let App = ({todos, visibilityFilter}) => {
   let visibleTodos = getVisibleTodos(todos, visibilityFilter);
   return (
     <div>
-      Add to list:
+      Add To List:
       <Input/>
       <ul>
         {visibleTodos.map((todo) => 
